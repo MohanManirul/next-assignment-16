@@ -48,7 +48,7 @@ const Project = async() => {
                           </h3>
                           <a
                             className="flex text-green-600 hover:text-green-700 font-bold"
-                            href="#"
+                            href={item['live']}
                           >
                             <svg
                               className="mr-3 w-6 h-6"

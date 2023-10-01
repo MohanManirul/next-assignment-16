@@ -1,6 +1,15 @@
-import React from "react";
+async function getData(){
+  const res = await fetch(process.env.BASE_URL+"api/FeaturedProject");
 
-const FeaturedProject = () => {
+  if(!res.ok){
+    throw new Error("FeaturedProject calling fail");
+  }
+  return res.json();
+}
+
+
+const FeaturedProject = async () => {
+  const data = await getData() ;
   return (
     <>
       <section>
@@ -29,38 +38,49 @@ const FeaturedProject = () => {
                 </div>
               </div>
               <div className="w-full lg:w-1/2">
-                <div className="mb-4 flex flex-wrap items-end">
-                  <div className="mb-4 lg:mb-0 w-full lg:w-2/3 px-3">
-                    <img
-                      className="w-full h-32 lg:h-48 object-cover rounded"
-                      src="https://images.unsplash.com/photo-1604701145653-ab3c97c63467?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
-                      alt=""
-                    />
-                  </div>
-                  <div className="w-full lg:w-1/3 px-3">
-                    <img
-                      className="w-full h-32 object-cover rounded"
-                      src="https://images.unsplash.com/photo-1521581171443-58a6b508b9ac?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-wrap items-start">
-                  <div className="mb-4 lg:mb-0 w-full lg:w-1/3 px-3">
-                    <img
-                      className="w-full h-32 object-cover rounded"
-                      src="https://images.unsplash.com/photo-1501706649056-3cb79cccec52?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80"
-                      alt=""
-                    />
-                  </div>
-                  <div className="w-full lg:w-2/3 px-3">
-                    <img
-                      className="w-full h-32 lg:h-48 object-cover rounded"
-                      src="https://images.unsplash.com/photo-1489058535093-8f530d789c3b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                      alt=""
-                    />
-                  </div>
-                </div>
+               
+              <div className="flex flex-wrap -mx-4 mb-4">
+              {
+                data.map((item,i)=>{
+                  return(
+                    <div key={i} className="mb-8 w-full md:w-1/2 lg:w-1/3 px-4">
+                      <div className="bg-white rounded">
+                        <img
+                          className="rounded-t object-cover h-128"
+                          src={item['image']}
+                          alt=""
+                        />
+                        <div className="p-6">
+                          <span className="text-gray-400">2021</span>
+                          <h3 className="mb-4 text-2xl font-bold font-heading">
+                          {item['title']}
+                          </h3>
+                          <a
+                            className="flex text-green-600 hover:text-green-700 font-bold"
+                            href={item['live']}
+                          >
+                            <svg
+                              className="mr-3 w-6 h-6"
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span>View Case Study</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })
+              }
+         
+            </div>
               </div>
             </div>
           </div>
