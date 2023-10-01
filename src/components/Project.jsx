@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 async function getData(){
   const res = await fetch(process.env.BASE_URL+"api/AllProject");
 
@@ -73,12 +75,12 @@ const Project = async() => {
          
             </div>
             <div className="text-center">
-              <a
+              <Link
                 className="md:hidden inline-block py-2 px-6 rounded-l-xl rounded-t-xl bg-green-600 hover:bg-green-700 text-gray-50 font-bold leading-loose transition duration-200"
-                href="#"
+                href="/projects"
               >
                 View More Projects
-              </a>
+              </Link>
             </div>
           </div>
         </div>
