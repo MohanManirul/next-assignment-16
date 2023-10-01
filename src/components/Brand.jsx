@@ -1,6 +1,15 @@
-import React from "react";
+async function getData(){
+  const res = await fetch(process.env.BASE_URL+"api/BrandList");
 
-const Brand = () => {
+  if(!res.ok){
+    throw new Error("BrandList calling fail");
+  }
+  return res.json();
+}
+
+const Brand = async () => {
+  const data = await getData();
+
   return (
     <>
       <section className="py-20">
