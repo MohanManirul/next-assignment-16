@@ -21,15 +21,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/loading.js"
     ],
-    "/project/page": [
+    "/team/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/project/page.js"
-    ],
-    "/service/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/service/page.js"
+      "static/chunks/app/team/page.js"
     ]
   }
 }
