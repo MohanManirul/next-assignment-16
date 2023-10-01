@@ -1,6 +1,14 @@
-import React from "react";
+async function getData(){
+  const res = await fetch(process.env.BASE_URL+"api/StatList");
 
-const Project = () => {
+  if(!res.ok){
+    throw new Error("StatList calling fail");
+  }
+  return res.json();
+}
+
+const Project = async() => {
+  const data = await getData() ;
   return (
     <>
       <section>
